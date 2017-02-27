@@ -9,6 +9,8 @@ public class UIHandler : MonoBehaviour
 	public GameObject ore;
 	public GameObject research;
 
+	public GameObject researchWindow;
+
 	ResourcesHandler resourcesHandler;
 	ResearchHandler researchHandler;
 	SceneHandler sceneHandler;
@@ -25,5 +27,10 @@ public class UIHandler : MonoBehaviour
 		energy.GetComponentInChildren<Text>().text = "Energy: " + resourcesHandler.energy;
 		ore.GetComponentInChildren<Text>().text = "Ore: " + resourcesHandler.ore;
 		research.GetComponentInChildren<Text>().text = "Research: " + researchHandler.researchPoints;
+	}
+
+	public void ToggleResearchWindow()
+	{
+		researchWindow.SetActive(!researchWindow.activeSelf);
 	}
 }

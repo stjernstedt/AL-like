@@ -7,7 +7,7 @@ public abstract class ResearchItem : MonoBehaviour
 	public string title;
 	public string description;
 	public float cost;
-	public float amountResearched { get; private set; }
+	public float amountResearched;
 
 	//TODO list with all requirements, make condition class?
 

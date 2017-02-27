@@ -53,5 +53,7 @@ public class ResearchHandler : MonoBehaviour
 	{
 		unlockedResearch.Remove(researchItem);
 		doneResearch.Add(researchItem);
+		currentResearch = null;
+		print("research done!");
 	}
 }
