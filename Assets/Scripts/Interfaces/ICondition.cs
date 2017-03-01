@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IResearchItem
+public interface ICondition
 {
-	void Init();
-	void FinishResearch();
+
+	bool CheckCondition();
 }

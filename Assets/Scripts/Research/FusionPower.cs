@@ -3,7 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FusionPower : ResearchItem, IResearchItem
+public class FusionPower : ResearchItem
 {
+	public override void Init()
+	{
 
+	}
 }

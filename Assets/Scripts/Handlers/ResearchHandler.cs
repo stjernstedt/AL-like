@@ -8,9 +8,9 @@ public class ResearchHandler : MonoBehaviour
 
 	ResearchItem currentResearch;
 
-	List<ResearchItem> lockedResearch = new List<ResearchItem>();
-	List<ResearchItem> unlockedResearch = new List<ResearchItem>();
-	List<ResearchItem> doneResearch = new List<ResearchItem>();
+	public List<ResearchItem> lockedResearch = new List<ResearchItem>();
+	public List<ResearchItem> unlockedResearch = new List<ResearchItem>();
+	public List<ResearchItem> doneResearch = new List<ResearchItem>();
 
 	public float researchPoints
 	{
@@ -35,7 +35,24 @@ public class ResearchHandler : MonoBehaviour
 
 	public void RefreshResearchTree()
 	{
-		//TODO check conditions and add research items to list
+		ResearchItem[] listCopy = lockedResearch.ToArray();
+		foreach (ResearchItem item in listCopy)
+		{
+			bool passed = true;
+			foreach (ICondition condition in item.conditions)
+			{
+				if (!condition.CheckCondition())
+				{
+					passed = false;
+				}
+			}
+
+			if (passed)
+			{
+				unlockedResearch.Add(item);
+				lockedResearch.Remove(item);
+			}
+		}
 	}
 
 	public List<ResearchItem> AvailableResearch()
@@ -46,7 +63,6 @@ public class ResearchHandler : MonoBehaviour
 	public void BeginResearch(ResearchItem researchItem)
 	{
 		currentResearch = researchItem;
-		//TODO actually add research points towards tech
 	}
 
 	public void FinishResearch(ResearchItem researchItem)

@@ -28,7 +28,7 @@ public class ResearchDisplayer : MonoBehaviour
 
 	public void BeginResearch()
 	{
-		FindObjectOfType<ResearchHandler>().BeginResearch(selectedResearch);
+		researchHandler.BeginResearch(selectedResearch);
 	}
 
 	void OnEnable()
@@ -38,6 +38,7 @@ public class ResearchDisplayer : MonoBehaviour
 			Destroy(contentView.transform.GetChild(i).gameObject);
 		}
 
+		researchHandler.RefreshResearchTree();
 		foreach (ResearchItem researchItem in researchHandler.AvailableResearch())
 		{
 			GameObject button = Instantiate(researchButton);

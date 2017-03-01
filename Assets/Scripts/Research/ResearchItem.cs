@@ -9,13 +9,14 @@ public abstract class ResearchItem : MonoBehaviour
 	public float cost;
 	public float amountResearched;
 
-	//TODO list with all requirements, make condition class?
+	public List<ICondition> conditions = new List<ICondition>();
 
 	protected ResearchHandler researchHandler;
 
 	void Start()
 	{
 		researchHandler = FindObjectOfType<ResearchHandler>();
+		Init();
 	}
 
 	public void FinishResearch()
@@ -31,4 +32,6 @@ public abstract class ResearchItem : MonoBehaviour
 			FinishResearch();
 		}
 	}
+
+	public abstract void Init();
 }
