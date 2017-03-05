@@ -16,14 +16,10 @@ public class ResourcesHandler : MonoBehaviour
 		private set;
 	}
 
-	UIHandler uiHandler;
-
 	void Start()
 	{
-		uiHandler = FindObjectOfType<UIHandler>();
 		energy = 0;
 		ore = 20;
-		uiHandler.UpdateUI();
 	}
 
 
@@ -33,11 +29,9 @@ public class ResourcesHandler : MonoBehaviour
 		{
 			case Resources.Energy:
 				energy += amount;
-				uiHandler.UpdateUI();
 				break;
 			case Resources.Ore:
 				ore += amount;
-				uiHandler.UpdateUI();
 				break;
 			default:
 				break;
@@ -55,7 +49,6 @@ public class ResourcesHandler : MonoBehaviour
 				if (energy >= amount)
 				{
 					energy -= amount;
-					uiHandler.UpdateUI();
 					return true;
 				}
 				break;
@@ -63,7 +56,6 @@ public class ResourcesHandler : MonoBehaviour
 				if (ore >= amount)
 				{
 					ore -= amount;
-					uiHandler.UpdateUI();
 					return true;
 				}
 				break;

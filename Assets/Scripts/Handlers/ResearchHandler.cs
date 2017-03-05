@@ -5,6 +5,7 @@ using UnityEngine;
 public class ResearchHandler : MonoBehaviour
 {
 	public GameObject research;
+	UIHandler uiHandler;
 
 	ResearchItem currentResearch;
 
@@ -20,6 +21,7 @@ public class ResearchHandler : MonoBehaviour
 	// Use this for initialization
 	public void Start()
 	{
+		uiHandler = FindObjectOfType<UIHandler>();
 		lockedResearch.Add(research.GetComponent<Quarry>());
 		unlockedResearch.Add(research.GetComponent<FusionPower>());
 	}
@@ -70,6 +72,6 @@ public class ResearchHandler : MonoBehaviour
 		unlockedResearch.Remove(researchItem);
 		doneResearch.Add(researchItem);
 		currentResearch = null;
-		print("research done!");
+		uiHandler.ShowPopup();
 	}
 }
