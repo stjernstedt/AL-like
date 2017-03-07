@@ -61,10 +61,6 @@ public class PlacementHandler : MonoBehaviour
 					placingObject = false;
 					objectBeingPlaced = null;
 				}
-				else
-				{
-					print("not enough resources");
-				}
 			}
 		}
 	}
@@ -102,14 +98,14 @@ public class PlacementHandler : MonoBehaviour
 			switch (resource.Key)
 			{
 				case Resources.Energy:
-					if (resource.Value > resourcesHandler.energy)
+					if (resource.Value > resourcesHandler.energy.amount)
 					{
 						objectBeingPlaced.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.5f);
 						enoughResources = false;
 					}
 					break;
 				case Resources.Ore:
-					if (resource.Value > resourcesHandler.ore)
+					if (resource.Value > resourcesHandler.ore.amount)
 					{
 						objectBeingPlaced.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.5f);
 						enoughResources = false;

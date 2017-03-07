@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IResearchItem
+public class Ore : Resource
 {
-	void Init();
-	//void FinishResearch();
+
 }

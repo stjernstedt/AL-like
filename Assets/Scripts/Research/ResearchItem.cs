@@ -8,29 +8,19 @@ public abstract class ResearchItem : MonoBehaviour
 	public string description;
 	public float cost;
 	public float amountResearched;
+	public float researchProgress;
 
 	public List<ICondition> conditions = new List<ICondition>();
 
-	protected ResearchHandler researchHandler;
-
 	void Start()
 	{
-		researchHandler = FindObjectOfType<ResearchHandler>();
 		Init();
-	}
-
-	public void FinishResearch()
-	{
-		researchHandler.FinishResearch(this);
 	}
 
 	public void AddResearch(float amount)
 	{
 		amountResearched += amount;
-		if (amountResearched >= cost)
-		{
-			FinishResearch();
-		}
+		researchProgress = amountResearched / cost;
 	}
 
 	public abstract void Init();

@@ -5,33 +5,28 @@ using UnityEngine.UI;
 
 public class ResourcesHandler : MonoBehaviour
 {
-	public float energy
-	{
-		get;
-		private set;
-	}
-	public float ore
-	{
-		get;
-		private set;
-	}
-
+	public Energy energy;
+	public Ore ore;
+	
 	void Start()
 	{
-		energy = 0;
-		ore = 20;
+		energy = gameObject.AddComponent<Energy>();
+		ore = gameObject.AddComponent<Ore>();
+		energy.amount = 0;
+		ore.amount = 20;
 	}
 
 
 	public void GenerateResource(Resources resourceType, float amount)
 	{
+		
 		switch (resourceType)
 		{
 			case Resources.Energy:
-				energy += amount;
+				energy.amount += amount;
 				break;
 			case Resources.Ore:
-				ore += amount;
+				ore.amount += amount;
 				break;
 			default:
 				break;
@@ -46,16 +41,16 @@ public class ResourcesHandler : MonoBehaviour
 		switch (resourceType)
 		{
 			case Resources.Energy:
-				if (energy >= amount)
+				if (energy.amount >= amount)
 				{
-					energy -= amount;
+					energy.amount -= amount;
 					return true;
 				}
 				break;
 			case Resources.Ore:
-				if (ore >= amount)
+				if (ore.amount >= amount)
 				{
-					ore -= amount;
+					ore.amount -= amount;
 					return true;
 				}
 				break;

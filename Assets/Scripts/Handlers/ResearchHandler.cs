@@ -7,16 +7,12 @@ public class ResearchHandler : MonoBehaviour
 	public GameObject research;
 	UIHandler uiHandler;
 
-	ResearchItem currentResearch;
+	public ResearchItem currentResearch;
+	public float researchProgress;
 
 	public List<ResearchItem> lockedResearch = new List<ResearchItem>();
 	public List<ResearchItem> unlockedResearch = new List<ResearchItem>();
 	public List<ResearchItem> doneResearch = new List<ResearchItem>();
-
-	public float researchPoints
-	{
-		get; private set;
-	}
 
 	// Use this for initialization
 	public void Start()
@@ -28,10 +24,14 @@ public class ResearchHandler : MonoBehaviour
 
 	public void GenerateResearch(float amount)
 	{
-		//researchPoints += amount;
 		if (currentResearch != null)
 		{
 			currentResearch.AddResearch(amount);
+			researchProgress = currentResearch.researchProgress;
+			if (currentResearch.researchProgress >= 1)
+			{
+				FinishResearch(currentResearch);
+			}
 		}
 	}
 
@@ -73,5 +73,18 @@ public class ResearchHandler : MonoBehaviour
 		doneResearch.Add(researchItem);
 		currentResearch = null;
 		uiHandler.ShowPopup();
+	}
+
+	public float GetResearchProgress()
+	{
+		if (currentResearch != null)
+		{
+			return currentResearch.researchProgress;
+		}
+		else
+		{
+			return 0;
+		}
+
 	}
 }

@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IResearchItem
+public class Energy : Resource
 {
-	void Init();
-	//void FinishResearch();
+
 }

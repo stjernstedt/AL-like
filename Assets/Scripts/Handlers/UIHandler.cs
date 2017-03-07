@@ -10,6 +10,7 @@ public class UIHandler : MonoBehaviour
 	public GameObject research;
 
 	public GameObject researchWindow;
+	public GameObject researchBar;
 	public GameObject popup;
 
 	ResourcesHandler resourcesHandler;
@@ -28,7 +29,7 @@ public class UIHandler : MonoBehaviour
 	void Update()
 	{
 		timePassed += Time.deltaTime;
-		if(timePassed > 1)
+		if (timePassed > 1)
 		{
 			UpdateUI();
 			timePassed = 0;
@@ -37,15 +38,17 @@ public class UIHandler : MonoBehaviour
 
 	public void UpdateUI()
 	{
-		energy.GetComponentInChildren<Text>().text = "Energy: " + resourcesHandler.energy;
-		ore.GetComponentInChildren<Text>().text = "Ore: " + resourcesHandler.ore;
-		research.GetComponentInChildren<Text>().text = "Research: " + researchHandler.researchPoints;
+		energy.GetComponentInChildren<Text>().text = "Energy: " + resourcesHandler.energy.amount;
+		ore.GetComponentInChildren<Text>().text = "Ore: " + resourcesHandler.ore.amount;
+		//TODO tweak the way researchprogress is displayed/stored
+		researchBar.GetComponent<Image>().fillAmount = researchHandler.researchProgress;
+		//TODO reset progress when changing tech
+		researchBar.GetComponentInChildren<Text>().text = (researchHandler.researchProgress * 100) + "%";
 	}
 
 	public void ToggleResearchWindow()
 	{
 		researchWindow.SetActive(!researchWindow.activeSelf);
-		//TODO make research bar update
 	}
 
 	public void ShowPopup()
