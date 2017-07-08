@@ -9,6 +9,9 @@ public class UIHandler : MonoBehaviour
 	public GameObject ore;
 	public GameObject research;
 
+	public GameObject vehiclePanel;
+	public GameObject vehicleDetails;
+
 	public GameObject researchWindow;
 	public GameObject researchBar;
 	public GameObject popup;
@@ -44,6 +47,19 @@ public class UIHandler : MonoBehaviour
 		researchBar.GetComponent<Image>().fillAmount = researchHandler.researchProgress;
 		//TODO reset progress when changing tech
 		researchBar.GetComponentInChildren<Text>().text = (researchHandler.researchProgress * 100) + "%";
+	}
+
+	public void UpdateVehicles()
+	{
+		foreach (Vehicle spacecraft in sceneHandler.currentColony.GetComponents<Vehicle>())
+		{
+			//TODO add buttons
+		}
+	}
+
+	public void ShowVehicleDetails()
+	{
+		vehicleDetails.SetActive(true);
 	}
 
 	public void ToggleResearchWindow()

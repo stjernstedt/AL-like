@@ -8,7 +8,7 @@ public class Quarry : ResearchItem, IResearchItem
 	public override void Init()
 	{
 		ResearchCondition researchCondition = new ResearchCondition();
-		researchCondition.requiredResearch.Add(GameObject.FindObjectOfType<FusionPower>());
+		researchCondition.requiredResearch.Add(FindObjectOfType<FusionPower>());
 		conditions.Add(researchCondition);
 	}
 }

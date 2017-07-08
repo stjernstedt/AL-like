@@ -32,4 +32,9 @@ public class SceneHandler : MonoBehaviour
 
 		uiHandler.UpdateUI();
 	}
+
+	public void DisplayVehicleScreen(GameObject vehicle)
+	{
+
+	}
 }

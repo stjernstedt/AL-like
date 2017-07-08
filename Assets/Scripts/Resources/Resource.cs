@@ -9,20 +9,4 @@ public class Resource : MonoBehaviour
 		get;
 		set;
 	}
-
-	//public void AddResource(float amount)
-	//{
-	//	this.amount += amount;
-	//}
-
-	//public bool RemoveResource(float amount)
-	//{
-	//	if (this.amount > amount)
-	//	{
-	//		this.amount -= amount;
-	//		return true;
-	//	}
-
-	//	return false;
-	//}
 }
