@@ -5,9 +5,12 @@ using UnityEngine.UI;
 
 public class UIHandler : MonoBehaviour
 {
-	public GameObject energy;
-	public GameObject ore;
-	public GameObject research;
+	public GameObject UIenergy;
+	Text energyText;
+	public GameObject UIore;
+	Text oreText;
+	//public GameObject UIresearch;
+	//Text researchText;
 
 	public GameObject vehiclePanel;
 	public GameObject vehicleDetails;
@@ -16,7 +19,7 @@ public class UIHandler : MonoBehaviour
 	public GameObject researchBar;
 	public GameObject popup;
 
-	ResourcesHandler resourcesHandler;
+	public ResourcesHandler resourcesHandler;
 	ResearchHandler researchHandler;
 	SceneHandler sceneHandler;
 
@@ -27,6 +30,9 @@ public class UIHandler : MonoBehaviour
 		sceneHandler = FindObjectOfType<SceneHandler>();
 		researchHandler = FindObjectOfType<ResearchHandler>();
 		resourcesHandler = sceneHandler.currentColony.GetComponent<ResourcesHandler>();
+		energyText = UIenergy.GetComponentInChildren<Text>();
+		oreText = UIore.GetComponentInChildren<Text>();
+		//researchText = UIresearch.GetComponentInChildren<Text>();
 	}
 
 	void Update()
@@ -41,8 +47,8 @@ public class UIHandler : MonoBehaviour
 
 	public void UpdateUI()
 	{
-		energy.GetComponentInChildren<Text>().text = "Energy: " + resourcesHandler.energy.amount;
-		ore.GetComponentInChildren<Text>().text = "Ore: " + resourcesHandler.ore.amount;
+		energyText.text = "Energy: " + resourcesHandler.energy.amount;
+		oreText.text = "Ore: " + resourcesHandler.ore.amount;
 		//TODO tweak the way researchprogress is displayed/stored
 		researchBar.GetComponent<Image>().fillAmount = researchHandler.researchProgress;
 		//TODO reset progress when changing tech

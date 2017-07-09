@@ -30,6 +30,7 @@ public class SceneHandler : MonoBehaviour
 			renderer.enabled = true;
 		}
 
+		uiHandler.resourcesHandler = currentColony.GetComponent<ResourcesHandler>();
 		uiHandler.UpdateUI();
 	}
 
