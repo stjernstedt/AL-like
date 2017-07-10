@@ -32,7 +32,7 @@ public class ResourceGenerator : MonoBehaviour, ITickable
 		timeLapsed += Time.deltaTime;
 		if (timeLapsed > frequency)
 		{
-			if (resourceHandler.UseResource(Resources.Energy, powerUsed))
+			if (resourceHandler.RemoveResource(Resources.Energy, powerUsed))
 			{
 				if (resourceType == Resources.Research)
 				{
@@ -40,7 +40,7 @@ public class ResourceGenerator : MonoBehaviour, ITickable
 				}
 				else
 				{
-					resourceHandler.GenerateResource(resourceType, amountProduced);
+					resourceHandler.AddResource(resourceType, amountProduced);
 				}
 			}
 			timeLapsed = 0;

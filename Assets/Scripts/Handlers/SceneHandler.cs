@@ -33,9 +33,4 @@ public class SceneHandler : MonoBehaviour
 		uiHandler.resourcesHandler = currentColony.GetComponent<ResourcesHandler>();
 		uiHandler.UpdateUI();
 	}
-
-	public void DisplayVehicleScreen(GameObject vehicle)
-	{
-
-	}
 }

@@ -4,12 +4,22 @@ using UnityEngine;
 
 public class Vehicle : MonoBehaviour
 {
-	public int capacity;
+	ResourcesHandler resourcesHandler;
 
 	//TODO add spacecrafts to colony, display in ui, add load/unload functionality
-
-	public void Load(Resource amount)
+	void Start()
 	{
-		//TODO get resource from resourcehandler
+		resourcesHandler = GetComponent<ResourcesHandler>();
 	}
+
+	public void Load(Resources resourceType, int amount)
+	{
+		resourcesHandler.AddResource(resourceType, amount);
+	}
+
+	public void Unload(Resources resourceType, int amount)
+	{
+		resourcesHandler.RemoveResource(resourceType, amount);
+	}
+
 }

@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class Energy : Resource
 {
-
+	void Start()
+	{
+		resourceName = "Energy";
+	}
 }

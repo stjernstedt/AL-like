@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// placed on all objects with an inventory
+//TODO split inventory to own class and keep resourcehandlers on colonies?
 public class ResourcesHandler : MonoBehaviour
 {
+	public int capacity;
 	public Energy energy;
 	public Ore ore;
 	
@@ -17,9 +20,9 @@ public class ResourcesHandler : MonoBehaviour
 	}
 
 
-	public void GenerateResource(Resources resourceType, float amount)
+	public void AddResource(Resources resourceType, float amount)
 	{
-		
+		//TODO add capacity check, return bool
 		switch (resourceType)
 		{
 			case Resources.Energy:
@@ -34,7 +37,7 @@ public class ResourcesHandler : MonoBehaviour
 
 	}
 
-	public bool UseResource(Resources resourceType, float amount)
+	public bool RemoveResource(Resources resourceType, float amount)
 	{
 		if (amount == 0) return true;
 

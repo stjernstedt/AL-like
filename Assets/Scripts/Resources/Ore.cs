@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class Ore : Resource
 {
-
+	void Start()
+	{
+		resourceName = "Ore";
+	}
 }

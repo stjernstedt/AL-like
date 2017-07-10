@@ -8,4 +8,6 @@ public class Prefabs : MonoBehaviour
 	public GameObject powerPlant;
 	public GameObject mine;
 	public GameObject researchLab;
+	public GameObject vehicleButton;
+	public GameObject resourceButton;
 }

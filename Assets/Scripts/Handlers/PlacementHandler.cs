@@ -15,8 +15,8 @@ public class PlacementHandler : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
-		prefabs = FindObjectOfType<Prefabs>();
-		sceneHandler = FindObjectOfType<SceneHandler>();
+		prefabs = GetComponent<Prefabs>();
+		sceneHandler = GetComponent<SceneHandler>();
 	}
 
 	// Update is called once per frame
@@ -46,10 +46,10 @@ public class PlacementHandler : MonoBehaviour
 						switch (resource.Key)
 						{
 							case Resources.Energy:
-								resourcesHandler.UseResource(Resources.Energy, resource.Value);
+								resourcesHandler.RemoveResource(Resources.Energy, resource.Value);
 								break;
 							case Resources.Ore:
-								resourcesHandler.UseResource(Resources.Ore, resource.Value);
+								resourcesHandler.RemoveResource(Resources.Ore, resource.Value);
 								break;
 							default:
 								break;

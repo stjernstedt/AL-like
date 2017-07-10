@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class VehicleButton : MonoBehaviour
 {
-	public GameObject vehicle;
+	public Vehicle vehicle;
 
-	SceneHandler sceneHandler;
+	UIHandler uiHandler;
 
 	void Awake()
 	{
-		sceneHandler = FindObjectOfType<SceneHandler>();
+		uiHandler = FindObjectOfType<UIHandler>();
 	}
 
 	public void ActivateButton()
 	{
-		sceneHandler.DisplayVehicleScreen(vehicle);
+		uiHandler.DisplayVehicleDetails(vehicle);
 	}
 }

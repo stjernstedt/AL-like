@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Resource : MonoBehaviour
 {
+	public string resourceName;
+
 	public float amount
 	{
 		get;

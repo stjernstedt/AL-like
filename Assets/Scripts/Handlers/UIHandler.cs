@@ -14,6 +14,7 @@ public class UIHandler : MonoBehaviour
 
 	public GameObject vehiclePanel;
 	public GameObject vehicleDetails;
+	List<Vehicle> vehicles = new List<Vehicle>();
 
 	public GameObject researchWindow;
 	public GameObject researchBar;
@@ -22,6 +23,7 @@ public class UIHandler : MonoBehaviour
 	public ResourcesHandler resourcesHandler;
 	ResearchHandler researchHandler;
 	SceneHandler sceneHandler;
+	Prefabs prefabs;
 
 	float timePassed = 1;
 
@@ -29,6 +31,7 @@ public class UIHandler : MonoBehaviour
 	{
 		sceneHandler = FindObjectOfType<SceneHandler>();
 		researchHandler = FindObjectOfType<ResearchHandler>();
+		prefabs = GetComponent<Prefabs>();
 		resourcesHandler = sceneHandler.currentColony.GetComponent<ResourcesHandler>();
 		energyText = UIenergy.GetComponentInChildren<Text>();
 		oreText = UIore.GetComponentInChildren<Text>();
@@ -53,19 +56,28 @@ public class UIHandler : MonoBehaviour
 		researchBar.GetComponent<Image>().fillAmount = researchHandler.researchProgress;
 		//TODO reset progress when changing tech
 		researchBar.GetComponentInChildren<Text>().text = (researchHandler.researchProgress * 100) + "%";
+		UpdateVehicles();
 	}
 
+	// populates the vehicle panel on ui update
 	public void UpdateVehicles()
 	{
-		foreach (Vehicle spacecraft in sceneHandler.currentColony.GetComponents<Vehicle>())
+		foreach (Vehicle vehicle in sceneHandler.currentColony.GetComponentsInChildren<Vehicle>())
 		{
-			//TODO add buttons
+			if (!vehicles.Contains(vehicle))
+			{
+				vehicles.Add(vehicle);
+				GameObject vehicleButton = Instantiate(prefabs.vehicleButton);
+				vehicleButton.GetComponent<VehicleButton>().vehicle = vehicle;
+				vehicleButton.transform.SetParent(vehiclePanel.transform);
+			}
 		}
 	}
 
-	public void ShowVehicleDetails()
+	public void DisplayVehicleDetails(Vehicle vehicle)
 	{
 		vehicleDetails.SetActive(true);
+		vehicleDetails.GetComponent<VehicleDisplayer>().DisplayVehicleDetails(vehicle);
 	}
 
 	public void ToggleResearchWindow()
