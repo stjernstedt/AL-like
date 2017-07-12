@@ -11,7 +11,7 @@ public class ResourcesHandler : MonoBehaviour
 	public Energy energy;
 	public Ore ore;
 	
-	void Start()
+	void Awake()
 	{
 		energy = gameObject.AddComponent<Energy>();
 		ore = gameObject.AddComponent<Ore>();
@@ -63,4 +63,14 @@ public class ResourcesHandler : MonoBehaviour
 		return false;
 	}
 
+	public List<Resource> GetResourceTypes()
+	{
+		List<Resource> resources = new List<Resource>();
+		foreach (Resource resource in GetComponents<Resource>())
+		{
+			resources.Add(resource);
+		}
+
+		return resources;
+	}
 }

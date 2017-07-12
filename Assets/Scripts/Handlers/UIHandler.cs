@@ -74,6 +74,16 @@ public class UIHandler : MonoBehaviour
 		}
 	}
 
+	public void ClearVehicles()
+	{
+		foreach (Transform vehicle in vehiclePanel.transform)
+		{
+			Destroy(vehicle.gameObject);
+		}
+
+		vehicles.Clear();
+	}
+
 	public void DisplayVehicleDetails(Vehicle vehicle)
 	{
 		vehicleDetails.SetActive(true);

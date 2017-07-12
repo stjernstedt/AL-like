@@ -31,6 +31,7 @@ public class SceneHandler : MonoBehaviour
 		}
 
 		uiHandler.resourcesHandler = currentColony.GetComponent<ResourcesHandler>();
+		uiHandler.ClearVehicles();
 		uiHandler.UpdateUI();
 	}
 }

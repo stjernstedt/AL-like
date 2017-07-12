@@ -7,5 +7,6 @@ public class Ore : Resource
 	void Start()
 	{
 		resourceName = "Ore";
+		type = Resources.Ore;
 	}
 }

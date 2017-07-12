@@ -7,5 +7,6 @@ public class Energy : Resource
 	void Start()
 	{
 		resourceName = "Energy";
+		type = Resources.Energy;
 	}
 }
