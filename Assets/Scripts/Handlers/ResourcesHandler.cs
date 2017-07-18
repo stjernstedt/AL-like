@@ -15,8 +15,6 @@ public class ResourcesHandler : MonoBehaviour
 	{
 		energy = gameObject.AddComponent<Energy>();
 		ore = gameObject.AddComponent<Ore>();
-		energy.amount = 0;
-		ore.amount = 20;
 	}
 
 

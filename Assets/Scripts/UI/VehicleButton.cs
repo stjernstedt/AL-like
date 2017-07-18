@@ -15,6 +15,6 @@ public class VehicleButton : MonoBehaviour
 
 	public void ActivateButton()
 	{
-		uiHandler.DisplayVehicleDetails(vehicle);
+		uiHandler.DisplayVehicleDetails(vehicle, vehicle.GetComponentInParent<Colony>());
 	}
 }

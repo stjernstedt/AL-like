@@ -84,10 +84,10 @@ public class UIHandler : MonoBehaviour
 		vehicles.Clear();
 	}
 
-	public void DisplayVehicleDetails(Vehicle vehicle)
+	public void DisplayVehicleDetails(Vehicle vehicle, Colony colony)
 	{
 		vehicleDetails.SetActive(true);
-		vehicleDetails.GetComponent<VehicleDisplayer>().DisplayVehicleDetails(vehicle);
+		vehicleDetails.GetComponent<VehicleDisplayer>().DisplayVehicleDetails(vehicle, colony);
 	}
 
 	public void ToggleResearchWindow()

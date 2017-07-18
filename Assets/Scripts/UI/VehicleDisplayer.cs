@@ -1,33 +1,38 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class VehicleDisplayer : MonoBehaviour
 {
-	public GameObject resourcesPanel;
-	public Slider resourceSlider;
+	public GameObject vehicleResourcesTextPanel;
+	public GameObject colonyResourcesTextPanel;
+	public GameObject vehicleSlidersPanel;
+	public GameObject colonySlidersPanel;
 
 	List<Resource> resourceTypes = new List<Resource>();
-	SceneHandler sceneHandler;
+	List<ResourceTextSetter> vehicleResources = new List<ResourceTextSetter>();
+	List<ResourceTextSetter> colonyResources = new List<ResourceTextSetter>();
 	Prefabs prefabs;
+
+	Vehicle vehicle;
+	Colony colony;
 
 	// Use this for initialization
 	void Awake()
 	{
 		prefabs = FindObjectOfType<Prefabs>();
-		sceneHandler = FindObjectOfType<SceneHandler>();
 	}
 
-	public void DisplayVehicleDetails(Vehicle vehicle)
+	public void DisplayVehicleDetails(Vehicle vehicleToDisplay, Colony colonyToDisplay)
 	{
-		resourceSlider.maxValue = vehicle.resourcesHandler.capacity;
-		foreach (Transform resource in resourcesPanel.transform)
-		{
-			Destroy(resource.gameObject);
-		}
+		ClearPanels();
 
-		resourceTypes = sceneHandler.currentColony.GetComponent<ResourcesHandler>().GetResourceTypes();
+		vehicle = vehicleToDisplay;
+		colony = colonyToDisplay;
+
+		resourceTypes = colony.GetComponent<ResourcesHandler>().GetResourceTypes();
 
 		foreach (Resource resourceType in vehicle.GetComponent<ResourcesHandler>().GetResourceTypes())
 		{
@@ -45,12 +50,72 @@ public class VehicleDisplayer : MonoBehaviour
 			}
 		}
 
+		PopulateResources();
+		RefreshResources();
+	}
+
+	void PopulateResources()
+	{
+		// populates the vehicle and colony resource list
 		foreach (Resource resourceType in resourceTypes)
 		{
-			GameObject resourceButton = Instantiate(prefabs.resourceButton);
-			resourceButton.transform.SetParent(resourcesPanel.transform);
-			resourceButton.GetComponentInChildren<Text>().text = resourceType.resourceName;
+			// for vehicle
+			GameObject resourceText = Instantiate(prefabs.resourceText);
+			Resource resource = (Resource)vehicle.GetComponent(resourceType.GetType());
+			resourceText.transform.SetParent(vehicleResourcesTextPanel.transform);
+			GameObject sliderGO = Instantiate(prefabs.vehicleResourceSlider);
+			Slider slider = sliderGO.GetComponentInChildren<Slider>();
+			sliderGO.transform.SetParent(vehicleSlidersPanel.transform);
+			resourceText.GetComponent<ResourceTextSetter>().SetResource(resource, slider);
+			vehicleResources.Add(resourceText.GetComponent<ResourceTextSetter>());
+
+			// for colony
+			resourceText = Instantiate(prefabs.resourceText);
+			resource = (Resource)colony.GetComponent(resourceType.GetType());
+			resourceText.transform.SetParent(colonyResourcesTextPanel.transform);
+			sliderGO = Instantiate(prefabs.colonyResourceSlider);
+			slider = sliderGO.GetComponentInChildren<Slider>();
+			sliderGO.transform.SetParent(colonySlidersPanel.transform);
+			resourceText.GetComponent<ResourceTextSetter>().SetResource(resource, slider);
+			colonyResources.Add(resourceText.GetComponent<ResourceTextSetter>());
 		}
+	}
+
+	void ClearPanels()
+	{
+		foreach (Transform resource in vehicleResourcesTextPanel.transform)
+		{
+			Destroy(resource.gameObject);
+		}
+		foreach (Transform resource in colonyResourcesTextPanel.transform)
+		{
+			Destroy(resource.gameObject);
+		}
+
+		foreach (Transform resource in vehicleSlidersPanel.transform)
+		{
+			Destroy(resource.gameObject);
+		}
+
+		foreach (Transform resource in colonySlidersPanel.transform)
+		{
+			Destroy(resource.gameObject);
+		}
+
+	}
+
+	public void RefreshResources()
+	{
+		foreach (ResourceTextSetter setter in vehicleResources)
+		{
+			setter.UpdateResource();
+		}
+
+		foreach (ResourceTextSetter setter in colonyResources)
+		{
+			setter.UpdateResource();
+		}
+
 
 	}
 

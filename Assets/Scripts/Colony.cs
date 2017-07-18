@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Colony : MonoBehaviour, ITickable
 {
+	ResourcesHandler resourceHandler;
 
 	// Use this for initialization
 	void Start()
@@ -14,6 +15,8 @@ public class Colony : MonoBehaviour, ITickable
 
 	public void Init()
 	{
+		resourceHandler = GetComponent<ResourcesHandler>();
+		resourceHandler.AddResource(Resources.Ore, 20);
 		FindObjectOfType<Core>().tickables.Add(this);
 	}
 

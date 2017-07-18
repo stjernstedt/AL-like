@@ -9,5 +9,8 @@ public class Prefabs : MonoBehaviour
 	public GameObject mine;
 	public GameObject researchLab;
 	public GameObject vehicleButton;
-	public GameObject resourceButton;
+	//public GameObject resourceButton;
+	public GameObject resourceText;
+	public GameObject vehicleResourceSlider;
+	public GameObject colonyResourceSlider;
 }
