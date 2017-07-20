@@ -64,9 +64,9 @@ public class VehicleDisplayer : MonoBehaviour
 			Resource resource = (Resource)vehicle.GetComponent(resourceType.GetType());
 			resourceText.transform.SetParent(vehicleResourcesTextPanel.transform);
 			GameObject sliderGO = Instantiate(prefabs.vehicleResourceSlider);
-			Slider slider = sliderGO.GetComponentInChildren<Slider>();
+			//Slider slider = sliderGO.GetComponentInChildren<Slider>();
 			sliderGO.transform.SetParent(vehicleSlidersPanel.transform);
-			resourceText.GetComponent<ResourceTextSetter>().SetResource(resource, slider);
+			resourceText.GetComponent<ResourceTextSetter>().SetResource(resource, sliderGO);
 			vehicleResources.Add(resourceText.GetComponent<ResourceTextSetter>());
 
 			// for colony
@@ -74,9 +74,9 @@ public class VehicleDisplayer : MonoBehaviour
 			resource = (Resource)colony.GetComponent(resourceType.GetType());
 			resourceText.transform.SetParent(colonyResourcesTextPanel.transform);
 			sliderGO = Instantiate(prefabs.colonyResourceSlider);
-			slider = sliderGO.GetComponentInChildren<Slider>();
+			//slider = sliderGO.GetComponentInChildren<Slider>();
 			sliderGO.transform.SetParent(colonySlidersPanel.transform);
-			resourceText.GetComponent<ResourceTextSetter>().SetResource(resource, slider);
+			resourceText.GetComponent<ResourceTextSetter>().SetResource(resource, sliderGO);
 			colonyResources.Add(resourceText.GetComponent<ResourceTextSetter>());
 		}
 	}
@@ -119,4 +119,35 @@ public class VehicleDisplayer : MonoBehaviour
 
 	}
 
+	public void TransferResources()
+	{
+		foreach (ResourceTextSetter resource in vehicleResources)
+		{
+			Resources resourceType = resource.GetResource().type;
+			InputField field = resource.sliderPair.GetComponentInChildren<InputField>();
+			int amount;
+			int.TryParse(field.text, out amount);
+
+			if (colony.GetComponent<ResourcesHandler>().AddResource(resourceType, amount))
+			{
+				vehicle.GetComponent<ResourcesHandler>().RemoveResource(resourceType, amount);
+			}
+		}
+
+		foreach (ResourceTextSetter resource in colonyResources)
+		{
+			Resources resourceType = resource.GetResource().type;
+			InputField field = resource.sliderPair.GetComponentInChildren<InputField>();
+			int amount;
+			int.TryParse(field.text, out amount);
+
+			if (vehicle.GetComponent<ResourcesHandler>().AddResource(resourceType, amount))
+			{
+				colony.GetComponent<ResourcesHandler>().RemoveResource(resourceType, amount);
+			}
+		}
+
+
+		RefreshResources();
+	}
 }

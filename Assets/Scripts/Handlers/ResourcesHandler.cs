@@ -18,21 +18,23 @@ public class ResourcesHandler : MonoBehaviour
 	}
 
 
-	public void AddResource(Resources resourceType, float amount)
+	public bool AddResource(Resources resourceType, float amount)
 	{
 		//TODO add capacity check, return bool
 		switch (resourceType)
 		{
 			case Resources.Energy:
 				energy.amount += amount;
+				
 				break;
 			case Resources.Ore:
 				ore.amount += amount;
+				
 				break;
 			default:
 				break;
 		}
-
+		return true;
 	}
 
 	public bool RemoveResource(Resources resourceType, float amount)
