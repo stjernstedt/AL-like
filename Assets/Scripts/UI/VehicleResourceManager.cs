@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class VehicleDisplayer : MonoBehaviour
+public class VehicleResourceManager : MonoBehaviour
 {
 	public GameObject vehicleResourcesTextPanel;
 	public GameObject colonyResourcesTextPanel;
@@ -14,16 +14,9 @@ public class VehicleDisplayer : MonoBehaviour
 	List<Resource> resourceTypes = new List<Resource>();
 	List<ResourceTextSetter> vehicleResources = new List<ResourceTextSetter>();
 	List<ResourceTextSetter> colonyResources = new List<ResourceTextSetter>();
-	Prefabs prefabs;
 
 	Vehicle vehicle;
 	Colony colony;
-
-	// Use this for initialization
-	void Awake()
-	{
-		prefabs = FindObjectOfType<Prefabs>();
-	}
 
 	public void DisplayVehicleDetails(Vehicle vehicleToDisplay, Colony colonyToDisplay)
 	{
@@ -60,20 +53,20 @@ public class VehicleDisplayer : MonoBehaviour
 		foreach (Resource resourceType in resourceTypes)
 		{
 			// for vehicle
-			GameObject resourceText = Instantiate(prefabs.resourceText);
+			GameObject resourceText = Instantiate(Prefabs.resourceText);
 			Resource resource = (Resource)vehicle.GetComponent(resourceType.GetType());
 			resourceText.transform.SetParent(vehicleResourcesTextPanel.transform);
-			GameObject sliderGO = Instantiate(prefabs.vehicleResourceSlider);
+			GameObject sliderGO = Instantiate(Prefabs.vehicleResourceSlider);
 			//Slider slider = sliderGO.GetComponentInChildren<Slider>();
 			sliderGO.transform.SetParent(vehicleSlidersPanel.transform);
 			resourceText.GetComponent<ResourceTextSetter>().SetResource(resource, sliderGO);
 			vehicleResources.Add(resourceText.GetComponent<ResourceTextSetter>());
 
 			// for colony
-			resourceText = Instantiate(prefabs.resourceText);
+			resourceText = Instantiate(Prefabs.resourceText);
 			resource = (Resource)colony.GetComponent(resourceType.GetType());
 			resourceText.transform.SetParent(colonyResourcesTextPanel.transform);
-			sliderGO = Instantiate(prefabs.colonyResourceSlider);
+			sliderGO = Instantiate(Prefabs.colonyResourceSlider);
 			//slider = sliderGO.GetComponentInChildren<Slider>();
 			sliderGO.transform.SetParent(colonySlidersPanel.transform);
 			resourceText.GetComponent<ResourceTextSetter>().SetResource(resource, sliderGO);

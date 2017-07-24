@@ -23,7 +23,6 @@ public class UIHandler : MonoBehaviour
 	public ResourcesHandler resourcesHandler;
 	ResearchHandler researchHandler;
 	SceneHandler sceneHandler;
-	Prefabs prefabs;
 
 	float timePassed = 1;
 
@@ -31,7 +30,6 @@ public class UIHandler : MonoBehaviour
 	{
 		sceneHandler = FindObjectOfType<SceneHandler>();
 		researchHandler = FindObjectOfType<ResearchHandler>();
-		prefabs = GetComponent<Prefabs>();
 		resourcesHandler = sceneHandler.currentColony.GetComponent<ResourcesHandler>();
 		energyText = UIenergy.GetComponentInChildren<Text>();
 		oreText = UIore.GetComponentInChildren<Text>();
@@ -67,7 +65,7 @@ public class UIHandler : MonoBehaviour
 			if (!vehicles.Contains(vehicle))
 			{
 				vehicles.Add(vehicle);
-				GameObject vehicleButton = Instantiate(prefabs.vehicleButton);
+				GameObject vehicleButton = Instantiate(Prefabs.vehicleButton);
 				vehicleButton.GetComponent<VehicleButton>().vehicle = vehicle;
 				vehicleButton.transform.SetParent(vehiclePanel.transform);
 			}
@@ -87,7 +85,7 @@ public class UIHandler : MonoBehaviour
 	public void DisplayVehicleDetails(Vehicle vehicle, Colony colony)
 	{
 		vehicleDetails.SetActive(true);
-		vehicleDetails.GetComponent<VehicleDisplayer>().DisplayVehicleDetails(vehicle, colony);
+		vehicleDetails.GetComponent<VehicleResourceManager>().DisplayVehicleDetails(vehicle, colony);
 	}
 
 	public void ToggleResearchWindow()

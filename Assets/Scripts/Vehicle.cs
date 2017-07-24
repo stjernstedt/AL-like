@@ -6,7 +6,6 @@ public class Vehicle : MonoBehaviour
 {
 	public ResourcesHandler resourcesHandler;
 
-	//TODO add spacecrafts to colony, display in ui, add load/unload functionality
 	void Start()
 	{
 		resourcesHandler = GetComponent<ResourcesHandler>();

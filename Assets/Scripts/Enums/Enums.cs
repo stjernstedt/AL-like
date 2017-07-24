@@ -1,5 +1,6 @@
 ﻿public enum Buildables
 {
+	Colony,
 	PowerPlant,
 	Mine,
 	ResearchLab

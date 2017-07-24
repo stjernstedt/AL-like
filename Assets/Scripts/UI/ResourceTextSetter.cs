@@ -9,12 +9,6 @@ public class ResourceTextSetter : MonoBehaviour
 	Resource resource;
 	Slider slider;
 
-	//public void SetResource(string resourceName, float amount)
-	//{
-	//	GetComponent<Text>().text = resourceName;
-	//	transform.GetChild(0).GetComponent<Text>().text = "" + amount;
-	//}
-
 	public void SetResource(Resource resource, GameObject sliderPair)
 	{
 		this.resource = resource;

@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Prefabs : MonoBehaviour
 {
-	public GameObject colony;
-	public GameObject powerPlant;
-	public GameObject mine;
-	public GameObject researchLab;
-	public GameObject vehicleButton;
+	public static GameObject colony;
+	public static GameObject powerPlant;
+	public static GameObject mine;
+	public static GameObject researchLab;
+	public static GameObject vehicleButton;
 	//public GameObject resourceButton;
-	public GameObject resourceText;
-	public GameObject vehicleResourceSlider;
-	public GameObject colonyResourceSlider;
+	public static GameObject resourceText;
+	public static GameObject vehicleResourceSlider;
+	public static GameObject colonyResourceSlider;
 }

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlacementHandler : MonoBehaviour
 {
-	Prefabs prefabs;
 	ResourcesHandler resourcesHandler;
 	SceneHandler sceneHandler;
 
@@ -15,7 +14,6 @@ public class PlacementHandler : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
-		prefabs = GetComponent<Prefabs>();
 		sceneHandler = GetComponent<SceneHandler>();
 	}
 
@@ -67,17 +65,18 @@ public class PlacementHandler : MonoBehaviour
 
 	public void PlaceBuildable(Buildables type)
 	{
+		//TODO rework data storing, add buildings to colony when placing etc
 		resourcesHandler = sceneHandler.currentColony.GetComponent<ResourcesHandler>();
 		switch (type)
 		{
 			case Buildables.PowerPlant:
-				objectBeingPlaced = Instantiate(prefabs.powerPlant);
+				objectBeingPlaced = Instantiate(Prefabs.powerPlant);
 				break;
 			case Buildables.Mine:
-				objectBeingPlaced = Instantiate(prefabs.mine);
+				objectBeingPlaced = Instantiate(Prefabs.mine);
 				break;
 			case Buildables.ResearchLab:
-				objectBeingPlaced = Instantiate(prefabs.researchLab);
+				objectBeingPlaced = Instantiate(Prefabs.researchLab);
 				break;
 			default:
 				break;
