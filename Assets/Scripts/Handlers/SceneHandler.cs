@@ -17,16 +17,16 @@ public class SceneHandler : MonoBehaviour
 
 	public void ChangeColony(GameObject colony)
 	{
-		SpriteRenderer[] spriteRenderers = currentColony.GetComponentsInChildren<SpriteRenderer>();
-		foreach (SpriteRenderer renderer in spriteRenderers)
+		//SpriteRenderer[] spriteRenderers = currentColony.GetComponentsInChildren<SpriteRenderer>();
+		foreach (Renderer renderer in currentColony.GetComponent<Colony>().renderers)
 		{
 			renderer.enabled = false;
 		}
 
 		currentColony = colony;
-		spriteRenderers = currentColony.GetComponentsInChildren<SpriteRenderer>();
+		//spriteRenderers = currentColony.GetComponentsInChildren<SpriteRenderer>();
 
-		foreach (SpriteRenderer renderer in spriteRenderers)
+		foreach (Renderer renderer in currentColony.GetComponent<Colony>().renderers)
 		{
 			renderer.enabled = true;
 		}

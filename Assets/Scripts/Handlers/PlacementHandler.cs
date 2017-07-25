@@ -56,6 +56,7 @@ public class PlacementHandler : MonoBehaviour
 
 					objectBeingPlaced.GetComponent<ResourceGenerator>().enabled = true;
 					objectBeingPlaced.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+					sceneHandler.currentColony.GetComponent<Colony>().renderers.Add(objectBeingPlaced.GetComponent<Renderer>());
 					placingObject = false;
 					objectBeingPlaced = null;
 				}
@@ -70,13 +71,13 @@ public class PlacementHandler : MonoBehaviour
 		switch (type)
 		{
 			case Buildables.PowerPlant:
-				objectBeingPlaced = Instantiate(Prefabs.powerPlant);
+				objectBeingPlaced = Instantiate(Prefabs.Instance.powerPlant);
 				break;
 			case Buildables.Mine:
-				objectBeingPlaced = Instantiate(Prefabs.mine);
+				objectBeingPlaced = Instantiate(Prefabs.Instance.mine);
 				break;
 			case Buildables.ResearchLab:
-				objectBeingPlaced = Instantiate(Prefabs.researchLab);
+				objectBeingPlaced = Instantiate(Prefabs.Instance.researchLab);
 				break;
 			default:
 				break;

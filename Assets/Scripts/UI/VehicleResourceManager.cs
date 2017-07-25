@@ -18,8 +18,11 @@ public class VehicleResourceManager : MonoBehaviour
 	Vehicle vehicle;
 	Colony colony;
 
+	public bool updating = false;
+
 	public void DisplayVehicleDetails(Vehicle vehicleToDisplay, Colony colonyToDisplay)
 	{
+		updating = true;
 		ClearPanels();
 
 		vehicle = vehicleToDisplay;
@@ -45,6 +48,7 @@ public class VehicleResourceManager : MonoBehaviour
 
 		PopulateResources();
 		RefreshResources();
+		updating = false;
 	}
 
 	void PopulateResources()
@@ -53,20 +57,20 @@ public class VehicleResourceManager : MonoBehaviour
 		foreach (Resource resourceType in resourceTypes)
 		{
 			// for vehicle
-			GameObject resourceText = Instantiate(Prefabs.resourceText);
+			GameObject resourceText = Instantiate(Prefabs.Instance.resourceText);
 			Resource resource = (Resource)vehicle.GetComponent(resourceType.GetType());
 			resourceText.transform.SetParent(vehicleResourcesTextPanel.transform);
-			GameObject sliderGO = Instantiate(Prefabs.vehicleResourceSlider);
+			GameObject sliderGO = Instantiate(Prefabs.Instance.vehicleResourceSlider);
 			//Slider slider = sliderGO.GetComponentInChildren<Slider>();
 			sliderGO.transform.SetParent(vehicleSlidersPanel.transform);
 			resourceText.GetComponent<ResourceTextSetter>().SetResource(resource, sliderGO);
 			vehicleResources.Add(resourceText.GetComponent<ResourceTextSetter>());
 
 			// for colony
-			resourceText = Instantiate(Prefabs.resourceText);
+			resourceText = Instantiate(Prefabs.Instance.resourceText);
 			resource = (Resource)colony.GetComponent(resourceType.GetType());
 			resourceText.transform.SetParent(colonyResourcesTextPanel.transform);
-			sliderGO = Instantiate(Prefabs.colonyResourceSlider);
+			sliderGO = Instantiate(Prefabs.Instance.colonyResourceSlider);
 			//slider = sliderGO.GetComponentInChildren<Slider>();
 			sliderGO.transform.SetParent(colonySlidersPanel.transform);
 			resourceText.GetComponent<ResourceTextSetter>().SetResource(resource, sliderGO);

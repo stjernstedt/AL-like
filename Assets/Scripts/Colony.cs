@@ -6,10 +6,13 @@ using UnityEngine;
 public class Colony : MonoBehaviour, ITickable
 {
 	ResourcesHandler resourceHandler;
+	public List<Renderer> renderers = new List<Renderer>();
 
 	// Use this for initialization
 	void Start()
 	{
+		transform.parent.GetComponent<Planet>().renderers.Add(GetComponent<Renderer>());
+		renderers.Add(transform.parent.GetComponent<Planet>().colonyBackground.GetComponent<Renderer>());
 		Init();
 	}
 

@@ -65,7 +65,7 @@ public class UIHandler : MonoBehaviour
 			if (!vehicles.Contains(vehicle))
 			{
 				vehicles.Add(vehicle);
-				GameObject vehicleButton = Instantiate(Prefabs.vehicleButton);
+				GameObject vehicleButton = Instantiate(Prefabs.Instance.vehicleButton);
 				vehicleButton.GetComponent<VehicleButton>().vehicle = vehicle;
 				vehicleButton.transform.SetParent(vehiclePanel.transform);
 			}
@@ -84,8 +84,10 @@ public class UIHandler : MonoBehaviour
 
 	public void DisplayVehicleDetails(Vehicle vehicle, Colony colony)
 	{
+		//BUG if spamming vehicle button you get missingreference exception
 		vehicleDetails.SetActive(true);
-		vehicleDetails.GetComponent<VehicleResourceManager>().DisplayVehicleDetails(vehicle, colony);
+		if (!vehicleDetails.GetComponent<VehicleResourceManager>().updating)
+			vehicleDetails.GetComponent<VehicleResourceManager>().DisplayVehicleDetails(vehicle, colony);
 	}
 
 	public void ToggleResearchWindow()
