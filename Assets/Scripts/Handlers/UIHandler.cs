@@ -48,6 +48,7 @@ public class UIHandler : MonoBehaviour
 
 	public void UpdateUI()
 	{
+		//TODO make ui interchangable, planet ui colony ui etc
 		energyText.text = "Energy: " + resourcesHandler.energy.amount;
 		oreText.text = "Ore: " + resourcesHandler.ore.amount;
 		//TODO tweak the way researchprogress is displayed/stored

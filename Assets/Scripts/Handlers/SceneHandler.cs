@@ -7,6 +7,8 @@ public class SceneHandler : MonoBehaviour
 	public GameObject currentColony;
 	public GameObject currentPlanet;
 
+	List<Renderer> currentRenderers = new List<Renderer>();
+
 	UIHandler uiHandler;
 
 	// Use this for initialization
@@ -17,19 +19,25 @@ public class SceneHandler : MonoBehaviour
 
 	public void ChangeColony(GameObject colony)
 	{
-		//SpriteRenderer[] spriteRenderers = currentColony.GetComponentsInChildren<SpriteRenderer>();
-		foreach (Renderer renderer in currentColony.GetComponent<Colony>().renderers)
+		//TODO draw colony ui
+
+		foreach (Renderer renderer in currentRenderers)
 		{
 			renderer.enabled = false;
 		}
 
 		currentColony = colony;
-		//spriteRenderers = currentColony.GetComponentsInChildren<SpriteRenderer>();
+		currentRenderers.Clear();
 
 		foreach (Renderer renderer in currentColony.GetComponent<Colony>().renderers)
 		{
 			renderer.enabled = true;
+			currentRenderers.Add(renderer);
 		}
+
+		Renderer background = currentColony.GetComponentInParent<Planet>().colonyBackground.GetComponent<Renderer>();
+		background.enabled = true;
+		currentRenderers.Add(background);
 
 		uiHandler.resourcesHandler = currentColony.GetComponent<ResourcesHandler>();
 		uiHandler.ClearVehicles();
@@ -38,17 +46,23 @@ public class SceneHandler : MonoBehaviour
 
 	public void ChangePlanet(GameObject planet)
 	{
-		//TODO work out how to change scenes
-		//GameObject[] colonyView = GameObject.FindGameObjectsWithTag(Tags.colonyView);
-		//foreach (GameObject item in colonyView)
-		//{
-		//	item.GetComponent<Renderer>().enabled = false;
-		//}
-
-		Renderer[] renderers = GetComponents<Renderer>();
-		foreach (Renderer renderer in renderers)
+		foreach (Renderer renderer in currentRenderers)
 		{
 			renderer.enabled = false;
 		}
+
+		currentPlanet = planet;
+		currentRenderers.Clear();
+
+		foreach (Renderer renderer in currentPlanet.GetComponent<Planet>().renderers)
+		{
+			renderer.enabled = true;
+			currentRenderers.Add(renderer);
+		}
+
+		Renderer background = currentPlanet.GetComponent<Planet>().planetBackground.GetComponent<Renderer>();
+		background.enabled = true;
+		currentRenderers.Add(background);
+
 	}
 }
