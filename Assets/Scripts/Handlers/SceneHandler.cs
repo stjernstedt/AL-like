@@ -19,8 +19,6 @@ public class SceneHandler : MonoBehaviour
 
 	public void ChangeColony(GameObject colony)
 	{
-		//TODO draw colony ui
-
 		foreach (Renderer renderer in currentRenderers)
 		{
 			renderer.enabled = false;
@@ -39,9 +37,7 @@ public class SceneHandler : MonoBehaviour
 		background.enabled = true;
 		currentRenderers.Add(background);
 
-		uiHandler.resourcesHandler = currentColony.GetComponent<ResourcesHandler>();
-		uiHandler.ClearVehicles();
-		uiHandler.UpdateUI();
+		uiHandler.ChangeUIColony();
 	}
 
 	public void ChangePlanet(GameObject planet)
@@ -64,5 +60,6 @@ public class SceneHandler : MonoBehaviour
 		background.enabled = true;
 		currentRenderers.Add(background);
 
+		uiHandler.ChangeUIPlanet();
 	}
 }
