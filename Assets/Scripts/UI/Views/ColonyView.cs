@@ -15,14 +15,12 @@ public class ColonyView : MonoBehaviour, IView
 	List<Vehicle> vehicles = new List<Vehicle>();
 
 	ResourcesHandler resourcesHandler;
-	ResearchHandler researchHandler;
 	SceneHandler sceneHandler;
 
 	// Use this for initialization
 	void Awake()
 	{
 		sceneHandler = FindObjectOfType<SceneHandler>();
-		researchHandler = FindObjectOfType<ResearchHandler>();
 		resourcesHandler = sceneHandler.currentColony.GetComponent<ResourcesHandler>();
 
 		energyText = UIenergy.GetComponentInChildren<Text>();

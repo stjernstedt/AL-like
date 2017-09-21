@@ -11,6 +11,7 @@ public class ResearchDisplayer : MonoBehaviour
 	public ResearchItem selectedResearch;
 	public GameObject researchButton;
 	public GameObject contentView;
+	public GameObject researchBar;
 
 	ResearchHandler researchHandler;
 
@@ -18,6 +19,15 @@ public class ResearchDisplayer : MonoBehaviour
 	{
 		researchHandler = FindObjectOfType<ResearchHandler>();
 	}
+
+	void Update()
+	{
+		//TODO tweak the way researchprogress is displayed/stored
+		researchBar.GetComponent<Image>().fillAmount = researchHandler.researchProgress;
+		//TODO reset progress when changing tech
+		researchBar.GetComponentInChildren<Text>().text = (researchHandler.researchProgress * 100) + "%";
+	}
+
 
 	public void SelectResearch(ResearchItem researchItem)
 	{

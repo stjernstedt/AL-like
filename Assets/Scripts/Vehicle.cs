@@ -22,4 +22,9 @@ public class Vehicle : MonoBehaviour
 		resourcesHandler.RemoveResource(resourceType, amount);
 	}
 
+	//TODO add movement between planets/colonies
+	public void Travel(GameObject destination)
+	{
+		transform.SetParent(destination.transform);
+	}
 }

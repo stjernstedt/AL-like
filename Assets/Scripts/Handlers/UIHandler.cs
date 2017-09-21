@@ -16,14 +16,11 @@ public class UIHandler : MonoBehaviour
 
 	IView currentView;
 
-	ResearchHandler researchHandler;
-
 	float timePassed = 1;
 
 	void Awake()
 	{
-		researchHandler = FindObjectOfType<ResearchHandler>();
-		//researchText = UIresearch.GetComponentInChildren<Text>();
+
 	}
 
 	void Update()
@@ -55,15 +52,6 @@ public class UIHandler : MonoBehaviour
 			currentView.EndView();
 		currentView = planetView.GetComponent<IView>();
 		currentView.StartView();
-	}
-
-	//TODO implement
-	void Research()
-	{
-		//TODO tweak the way researchprogress is displayed/stored
-		researchBar.GetComponent<Image>().fillAmount = researchHandler.researchProgress;
-		//TODO reset progress when changing tech
-		researchBar.GetComponentInChildren<Text>().text = (researchHandler.researchProgress * 100) + "%";
 	}
 
 	public void DisplayVehicleDetails(Vehicle vehicle, Colony colony)
