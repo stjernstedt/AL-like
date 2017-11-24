@@ -15,7 +15,7 @@ public class VehicleResourceManager : MonoBehaviour
 	List<ResourceTextSetter> vehicleResources = new List<ResourceTextSetter>();
 	List<ResourceTextSetter> colonyResources = new List<ResourceTextSetter>();
 
-	Vehicle vehicle;
+	public Vehicle vehicle;
 	Colony colony;
 
 	public bool updating = false;

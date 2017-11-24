@@ -8,7 +8,7 @@ public class UIHandler : MonoBehaviour
 	public GameObject planetView;
 	public GameObject colonyView;
 
-	public GameObject vehicleDetails;
+	public GameObject missionWindow;
 
 	public GameObject researchWindow;
 	public GameObject researchBar;
@@ -54,12 +54,15 @@ public class UIHandler : MonoBehaviour
 		currentView.StartView();
 	}
 
-	public void DisplayVehicleDetails(Vehicle vehicle, Colony colony)
+	public void DisplayMissionWindow(Vehicle vehicle, Colony colony)
 	{
 		//BUG if spamming vehicle button you get missingreference exception
-		vehicleDetails.SetActive(true);
-		if (!vehicleDetails.GetComponent<VehicleResourceManager>().updating)
-			vehicleDetails.GetComponent<VehicleResourceManager>().DisplayVehicleDetails(vehicle, colony);
+		missionWindow.SetActive(true);
+		if (!missionWindow.GetComponent<VehicleResourceManager>().updating)
+		{
+			missionWindow.GetComponent<MissionWindow>().vehicle = vehicle.gameObject;
+			missionWindow.GetComponent<VehicleResourceManager>().DisplayVehicleDetails(vehicle, colony);
+		}
 	}
 
 	public void ToggleResearchWindow()

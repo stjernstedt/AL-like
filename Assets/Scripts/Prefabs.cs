@@ -14,5 +14,7 @@ public class Prefabs : Singleton<Prefabs>
 	public GameObject vehicleResourceSlider;
 	public GameObject colonyResourceSlider;
 
+	// Mission UI
+	public GameObject destinationButton;
 
 }

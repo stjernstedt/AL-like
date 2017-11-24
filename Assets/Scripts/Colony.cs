@@ -20,7 +20,10 @@ public class Colony : MonoBehaviour, ITickable
 	{
 		resourceHandler = GetComponent<ResourcesHandler>();
 		resourceHandler.AddResource(Resources.Ore, 20);
-		FindObjectOfType<Core>().tickables.Add(this);
+
+		Core core = FindObjectOfType<Core>();
+		core.tickables.Add(this);
+		core.colonies.Add(this);
 	}
 
 	public void Tick()

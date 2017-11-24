@@ -31,7 +31,6 @@ public class ColonyView : MonoBehaviour, IView
 	{
 		gameObject.SetActive(true);
 		resourcesHandler = sceneHandler.currentColony.GetComponent<ResourcesHandler>();
-		ClearVehicles();
 		UpdateView();
 	}
 
@@ -50,6 +49,7 @@ public class ColonyView : MonoBehaviour, IView
 	// populates the vehicle panel on ui update
 	void UpdateVehicles()
 	{
+		ClearVehicles();
 		foreach (Vehicle vehicle in sceneHandler.currentColony.GetComponentsInChildren<Vehicle>())
 		{
 			if (!vehicles.Contains(vehicle))
